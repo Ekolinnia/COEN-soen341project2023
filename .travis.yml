@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 7.2
+
+services:
+  - mysql
+
+before_script:
+  - mysql -u root -e 'CREATE DATABASE users;'
+  - mysql -u root users < $TRAVIS_BUILD_DIR/src/db/Setup/users.sql
+  - mysql -u root users < $TRAVIS_BUILD_DIR/src/db/Setup/users.sql
+
+script:
+  - phpunit $TRAVIS_BUILD_DIR/src/tests/SignUpTest.php
