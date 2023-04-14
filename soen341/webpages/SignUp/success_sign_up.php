@@ -27,16 +27,17 @@
         <!-- Start of Page Here-->
         <div>
 
-            <div style="text-align: center; margin-top: 200px; margin-bottom: auto;">
-                <h1 class="text-white" style="font-size: 4vw;">
+            <div style="text-align: center; margin-top: 1%; margin-bottom: auto;">
+                <h1 class="text-white" style="font-size: 4vw; margin-top: 9%">
                     Success!
                 </h1>
                 <h3 class="text-white" style="margin-top: 30px; font-size: 1.2vw; font-family: 'Lato', sans-serif; font-weight: 400;">
                     Your account has successfully been created.
                 </h3>
                 <h3 class="text-white" style="font-size: 1.2vw; font-family: 'Lato', sans-serif; font-weight: 400;">
-                    You can now log in.
+                    You can now
                 </h3>
+                <a href="sign_up_page.php" class="btn btn-primary btn-lg outer" style="margin: auto; margin-top: 1%; width: 25%"><h1 style="font-size: 2vw">Log In</h1></a>
             </div>
     </body>
 </html>

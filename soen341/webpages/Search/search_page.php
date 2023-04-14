@@ -48,16 +48,16 @@
                 // Output the rows in the desired format
                 echo '<div class="d-flex justify-content-between align-items-center" style="margin-top: 2%">';
                 echo '<a class="btn btn-light btn-lg outer2" style="margin-left: 12.5%; width: 200px" id="search-btn">Search Filter</a>';
-                echo '<h1 class="text-white" style="font-size: 4vw; margin-bottom: 1%; margin-left: 13.5%">Search Postings</h1>';
+                echo '<h1 class="text-white" style="font-size: 4vw; margin-bottom: 1%; text-align: center">Search Postings</h1>';
                 echo '<a href="/soen341/webpages/Search/search_page.php" class="btn btn-light btn-lg outer2" style="margin-right: 12.5%; width: 200px">Reset Filter</a>';
-                echo '</div>';                
+                echo '</div>';
                 echo '<div style="background-color: white; height: 70%; margin: auto; width: 80%; overflow: scroll; text-align: center">';
                 echo '<div class="table" style="margin: auto;">';
                 echo '<div class="row header-row" style="position: sticky; top: 0; background-color: #333; z-index: 1; width: auto; margin: auto;">';
-                echo '<div class="cell" style="width: 100px"><h3 class="text-white postings-size" style="font-size: 1.5em">Id</h3></div>';
-                echo '<div class="cell" style="width: 300px"><h3 class="text-white postings-size" style="font-size: 1.5em">Position</h3></div>';
-                echo '<div class="cell" style="width: 300px"><h3 class="text-white postings-size" style="font-size: 1.5em">Company</h3></div>';
-                echo '<div class="cell" style="width: 300px"><h3 class="text-white postings-size" style="font-size: 1.5em">Industry</h3></div>';
+                echo '<div class="cell" style="width: 10%"><h3 class="text-white postings-size" style="font-size: 1.5em">Id</h3></div>';
+                echo '<div class="cell" style="width: 20%"><h3 class="text-white postings-size" style="font-size: 1.5em">Position</h3></div>';
+                echo '<div class="cell" style="width: 20%"><h3 class="text-white postings-size" style="font-size: 1.5em">Company</h3></div>';
+                echo '<div class="cell" style="width: 20%"><h3 class="text-white postings-size" style="font-size: 1.5em">Industry</h3></div>';
                 if ($query === "SELECT * FROM postings ORDER BY plocation DESC") {
                     $location_label = "Location ▼";
                 } else if ($query === "SELECT * FROM postings ORDER BY plocation ASC") {
@@ -65,7 +65,7 @@
                 } else {
                     $location_label = "Location";
                 }
-                echo '<div class="cell" style="width: 300px"><button style="border: none" onclick="refreshPage()"><h3 class="text-white postings-size" style="font-size: 1.5em" id="location-btn" onclick="changeSalary()">' . $location_label . '</h3></button></div>';                
+                echo '<div class="cell" style="width: 20%"><button style="border: none" onclick="refreshPage()"><h3 class="text-white postings-size" style="font-size: 1.5em" id="location-btn" onclick="changeSalary()">' . $location_label . '</h3></button></div>';                
                 if ($query === "SELECT * FROM postings ORDER BY salary DESC") {
                     $salary_label = "Salary ▼";
                 } else if ($query === "SELECT * FROM postings ORDER BY salary ASC") {
@@ -73,17 +73,17 @@
                 } else {
                     $salary_label = "Salary";
                 }
-                echo '<div class="cell" style="width: 200px"><button style="border: none" onclick="refreshPage()"><h3 class="text-white postings-size" style="font-size: 1.5em" id="salary-btn" onclick="changeSalary()">' . $salary_label . '</h3></button></div>';                
+                echo '<div class="cell" style="width: 10%"><button style="border: none" onclick="refreshPage()"><h3 class="text-white postings-size" style="font-size: 1.5em" id="salary-btn" onclick="changeSalary()">' . $salary_label . '</h3></button></div>';                
                 echo '</div>';
                 while ($row = $result->fetch_assoc()) {
                     echo '<div class="row" style="width: auto; margin: auto; border-bottom: 1px solid #ddd; text-align: center">';
                     echo '<a href="position.php?id=' . $row['id'] . '" style="display: contents">';
-                    echo '<div class="cell" style="width: 100px"><h3 class=" postings-size">' . $row['id'] . '</h3></div>';
-                    echo '<div class="cell" style="width: 300px"><h3 class=" postings-size">' . $row['position'] . '</h3></div>';
-                    echo '<div class="cell" style="width: 300px"><h3 class=" postings-size">' . $row['company'] . '</h3></div>';
-                    echo '<div class="cell" style="width: 300px"><h3 class=" postings-size">' . $row['industry'] . '</h3></div>';
-                    echo '<div class="cell" style="width: 300px"><h3 class=" postings-size">' . $row['plocation'] . '</h3></div>';
-                    echo '<div class="cell" style="width: 200px"><h3 class=" postings-size">' . $row['salary'] . '</h3></div>';
+                    echo '<div class="cell" style="width: 10%"><h3 class=" postings-size">' . $row['id'] . '</h3></div>';
+                    echo '<div class="cell" style="width: 20%"><h3 class=" postings-size">' . $row['position'] . '</h3></div>';
+                    echo '<div class="cell" style="width: 20%"><h3 class=" postings-size">' . $row['company'] . '</h3></div>';
+                    echo '<div class="cell" style="width: 20%"><h3 class=" postings-size">' . $row['industry'] . '</h3></div>';
+                    echo '<div class="cell" style="width: 20%"><h3 class=" postings-size">' . $row['plocation'] . '</h3></div>';
+                    echo '<div class="cell" style="width: 10%"><h3 class=" postings-size">' . $row['salary'] . '</h3></div>';
                     echo '</a>';
                     echo '</div>';                    
                 }

@@ -1,6 +1,6 @@
 <?php include '../../DB_PASSWORD.php' ?>
 <?php
-if(isset($_POST['id']) || isset($_POST['position']) || isset($_POST['company']) || isset($_POST['industry']) || isset($_POST['plocation'])) {
+if (isset($_POST['id']) || isset($_POST['position']) || isset($_POST['company']) || isset($_POST['industry']) || isset($_POST['plocation'])) {
 
     // Retrieve data from form
     $id = $_POST['id'];
@@ -16,23 +16,23 @@ if(isset($_POST['id']) || isset($_POST['position']) || isset($_POST['company']) 
     $query = "SELECT * FROM postings WHERE 1=1";
 
     if (!empty($id)) {
-    $query .= " AND id = '$id'";
+        $query .= " AND id = '$id'";
     }
 
     if (!empty($position)) {
-    $query .= " AND position = '$position'";
+        $query .= " AND position = '$position'";
     }
 
     if (!empty($company)) {
-    $query .= " AND company = '$company'";
+        $query .= " AND company = '$company'";
     }
 
     if (!empty($industry)) {
-    $query .= " AND industry = '$industry'";
+        $query .= " AND industry = '$industry'";
     }
 
     if (!empty($plocation)) {
-    $query .= " AND plocation = '$plocation'";
+        $query .= " AND plocation = '$plocation'";
     }
 
     // Build the query string parameter
@@ -41,5 +41,5 @@ if(isset($_POST['id']) || isset($_POST['position']) || isset($_POST['company']) 
     // Redirect to search_page.php with the query string parameter
     header("Location: ../Search/search_page.php?" . $query_string);
     exit;
-    }
+}
 ?>

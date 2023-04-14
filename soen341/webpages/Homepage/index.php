@@ -52,7 +52,23 @@
 
         <div class="profile_buttons">
             <a href="../Search/search_page.php" class="btn btn-primary btn-lg outer" style="margin-right: 10%; width: 25%"><h1 style="font-size: 2vw">Search</h1></a>
-            <a href="../Employers/post.php" class="btn btn-light btn-lg outer2" style="margin-left: 10%; width: 25%"><h1 style="font-size: 2vw">Post Position</h1></a>
+            <a href="../Employers/post.php" class="btn btn-light btn-lg outer2" style="margin-left: 10%; width: 25%"><h1 style="font-size: 2vw">
+                    <?php
+                        // Check if the user is logged in
+                        if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+                            $h1_text = "View Profile";
+                        }
+                        else {
+                            if ($_SESSION['usertype'] == 'employee'){
+                                $h1_text = "View Profile";
+                            }
+                            else {
+                                $h1_text = "Post Position";
+                            }
+                        }
+                        
+                    echo $h1_text; ?>
+                    </h1></a>
         </div>
 
             <div class="text-about" id="about">

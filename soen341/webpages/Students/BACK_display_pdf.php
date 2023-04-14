@@ -7,8 +7,13 @@ if(!$conn) {
   die("Error: Could not connect to database.");
 }
 
-// Get the username of the logged-in user
-$username = $_SESSION['username'];
+if($_SESSION['usertype'] == "employee"){
+  // Get the username of the logged-in user
+  $username = $_SESSION['username'];
+}
+else{
+  $username = $_SESSION['usr'];
+}
 
 // Prepare the SQL statement to select the logged-in user's PDF file from the database
 $sql = "SELECT pdfname, pdftype, pdfsize, pdfcontent FROM users WHERE username = ?";
@@ -23,6 +28,13 @@ mysqli_stmt_bind_result($stmt, $pdf_name, $pdf_type, $pdf_size, $pdf_content);
 
 // Fetch the results
 if(mysqli_stmt_fetch($stmt)) {
+  // Check if pdf exists
+  if(!isset($pdf_name)){
+    echo '<div class="row" style="width: 75%; margin: auto; text-align: center">';
+    echo '<div class="cell" style="width: 100%"><h2 style="font-size: 1.5vw">No Resume</h2></div>';
+    echo '</div>';
+    exit;
+  }
   // Output the PDF file
   echo '<div style="height: 895px; overflow: auto;">';
   echo '<object data="data:' . $pdf_type . ';base64,' . base64_encode($pdf_content) . '" type="' . $pdf_type . '" width="35%" height="100%">';

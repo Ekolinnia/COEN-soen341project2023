@@ -1,4 +1,4 @@
-/*html {
+/* /*html {
     height: 100%; /* Set the height of both elements to 100%
     background-color: #D18686;
     background-image: url(/soen341/images/bg-tt.jpg);
@@ -212,23 +212,7 @@ h2 {
 
 
 
-.form-container {
-    background-color: #cccbf3;
-    height: 16.5%;
-    width: 60%;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    z-index: 9999;
-    border: 5px solid black; 
-    
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-  }
+
 
 input[type="text"] {
     border: none;
@@ -282,3 +266,27 @@ input[type="text"]:focus {
     transition: 0.4s;
     background-color: white;
 }
+
+.interview_button {
+    align-items: center;
+    justify-content: center;
+} 
+
+
+.form-container {
+    background-color: #cccbf3;
+    height: 30%;
+    width: 60%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 9999;
+    border: 5px solid black; 
+    
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+  }

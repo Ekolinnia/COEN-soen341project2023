@@ -11,6 +11,28 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 ?>
 
 <?php
+// Check if Student is selected
+// Connect to the database
+$conn = new mysqli('localhost', 'root', DB_PASSWORD, 'applications');
+$student = $_SESSION['username'];
+
+$result = mysqli_query($conn, "SELECT selected FROM applications WHERE student = '$student'");
+$selected = 0;
+while ($row = mysqli_fetch_assoc($result)){
+    $selected = $row['selected'];
+    if ($selected == 1){
+        //echo $row['selected'];
+        break;
+    }
+}
+
+if ($selected == 1){
+    header("Location: dashboard_selected.php");
+    exit();     
+}
+?>
+
+<?php
 // Connect to the database
 $mysqli = new mysqli("localhost", "root", DB_PASSWORD, "users");
 
@@ -99,37 +121,38 @@ if($usertype == 'employer') {
 
         <!-- Start of Page Here-->
         <div class="table" style="margin: auto; margin-top: 3%; text-align: center">
-            <div class="row" style="width: 1200px; margin: auto; text-align: center">
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Name</h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Username</h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Education</h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Location</h3></div>
+            <div class="row" style="width: 80%; margin: auto; text-align: center">
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Name</h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Username</h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Education</h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Location</h3></div>
             </div>
-            <div class="row" style="width: 1200px; margin: auto; text-align: center">
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $name ?></h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $username ?></h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $education ?></h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $mylocation ?></h3></div>
+            <div class="row" style="width: 80%; margin: auto; text-align: center">
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $name ?></h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $username ?></h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $education ?></h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $mylocation ?></h3></div>
             </div>
 
             <hr>
             
-            <div class="row" style="width: 1200px; margin: auto; text-align: center">
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Experience</h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Skills</h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Availability</h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Languages</h3></div>
+            <div class="row" style="width: 80%; margin: auto; text-align: center">
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Experience</h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Skills</h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Availability</h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 2vw">Languages</h3></div>
             </div>
-            <div class="row" style="width: 1200px;; margin: auto; text-align: center">
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $experience ?></h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $skills ?></h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $availability ?></h3></div>
-                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $languages ?></h3></div>
+            <div class="row" style="width: 80%; margin: auto; text-align: center">
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $experience ?></h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $skills ?></h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $availability ?></h3></div>
+                <div class="cell" style="width: 25%"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $languages ?></h3></div>
             </div>
 
             <hr>
             
             <?php include 'BACK_display_pdf.php' ?>
+            <hr>
         </div>
     </body>
 </html>

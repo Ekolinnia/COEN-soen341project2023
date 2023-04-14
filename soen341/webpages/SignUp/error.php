@@ -24,14 +24,19 @@
 
         <!-- Start of Page Here-->
         <div>
-
-            <div style="text-align: center; margin-top: 200px; margin-bottom: auto;">
-                <h3 class="text-white" style="margin-top: 30px; font-size: 1.2vw; font-family: 'Lato', sans-serif; font-weight: 400;">
-                    The username you have entered is already in use.
-                </h3>
+            <div style="text-align: center; margin-top: 1%; margin-bottom: auto;">
+                <h1 class="text-white" style="margin-top: 9%; font-size: 4vw; font-family: 'Lato', sans-serif; font-weight: 400;">
+                    Error
+                </h1>
                 <h3 class="text-white" style="font-size: 1.2vw; font-family: 'Lato', sans-serif; font-weight: 400;">
-                    Please try again.
+                    <?php
+                    if(isset($_GET['issue'])){
+                        echo urldecode($_GET['issue']);
+                    }
+                    ?>
                 </h3>
+                <hr>
+                <a href="sign_up_page.php" class="btn btn-primary btn-lg outer" style="margin: auto; margin-top: 1%; width: 25%"><h1 style="font-size: 2vw">Please try again</h1></a>
             </div>
     </body>
 </html>

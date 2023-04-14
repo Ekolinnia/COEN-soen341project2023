@@ -16,16 +16,16 @@ if (isset($_POST['name'])) {
 
     // Validate the form data
     if (empty($name) || empty($username) || empty($password1) || empty($password2) || empty($usertype)) {
-        $_SESSION['error'] = "All fields are required.";
+        $_SESSION['error'] = "All fields are required";
     } elseif ($password1 !== $password2) {
-        $_SESSION['error'] = "Passwords do not match.";
+        $_SESSION['error'] = "Passwords do not match";
     } else {
         // Check if the username already exists
         $conn = mysqli_connect('localhost', 'root', DB_PASSWORD, 'users');
         $query = "SELECT * FROM users WHERE username='$username'";
         $result = mysqli_query($conn, $query);
         if (mysqli_num_rows($result) > 0) {
-            $_SESSION['error'] = "Username already taken.";
+            $_SESSION['error'] = "Username already taken";
         } else {
             // Hash the password
             $hashed_password = password_hash($password1, PASSWORD_DEFAULT);
@@ -33,7 +33,7 @@ if (isset($_POST['name'])) {
             // Insert the data into the database
             $query = "INSERT INTO users (usertype, name, username, password) VALUES ('$usertype', '$name', '$username', '$hashed_password')";
             if (mysqli_query($conn, $query)) {
-                $_SESSION['success'] = "User registered successfully.";
+                $_SESSION['success'] = "User registered successfully";
                 header("Location: success_sign_up.php");
                 exit;
             } else {
@@ -46,7 +46,7 @@ if (isset($_POST['name'])) {
     }
 
     // Redirect back to the registration page
-    header("Location: error.php");
+    header("Location: error.php?issue=" . urlencode($_SESSION['error']));
     exit;
 }
 ?>

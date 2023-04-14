@@ -16,7 +16,7 @@ $mysqli = new mysqli("localhost", "root", DB_PASSWORD, "users");
 
 // Retrieve the user's name from the database
 $username = $_SESSION['username'];
-$query = "SELECT usertype, name, username, education, mylocation, experience, skills, availability, languages FROM users WHERE username = '$username'";
+$query = "SELECT usertype, name, username, company, location, industry FROM users WHERE username = '$username'";
 $result = $mysqli->query($query);
 
 // Check if the query was successful
@@ -25,12 +25,10 @@ if ($result) {
     $row = $result->fetch_assoc();
     $usertype = $row['usertype'];
     $name = $row['name'];
-    $education = $row['education'];
-    $mylocation = $row['mylocation'];
-    $experience = $row['experience'];
-    $skills = $row['skills'];
-    $availability = $row['availability'];
-    $languages = $row['languages'];
+    $company = $row['company'];
+    $location = $row['location'];
+    $industry = $row['industry'];
+    
 } else {
     // Display an error message if the query failed
     $name = "Error: " . $mysqli->error;
@@ -68,24 +66,40 @@ if($usertype == 'employee') {
 
         <div style="text-align: center; padding-top: 3%;">
             <h1 class="text-white" style="font-size: 4vw; transition: opacity 0.5s ease-out;" id="headline">
-                [<?php echo $name; ?>] Candidates Page
+                Welcome <?php echo $name; ?>!
             </h1>
+            <h3 class="text-white" style="font-size: 1.5vw; font-family: 'Lato', sans-serif; font-weight: 400;">
+                Let's get started.
+            </h3>
         </div>
 
         <div class="profile_buttons">
-            <a href="../Search/search_page.php?query=SELECT+%2A+FROM+postings+WHERE+1%3D1+AND+company+%3D+%27<?php echo $name; ?>%27" class="btn btn-primary btn-lg outer" style="margin-right: 5%; width: 200px">List Postings</a>
-            <a href="../Students/update_profile.php" class="btn btn-light btn-lg outer2" style="margin-left: 5%; width: 200px">Update Profile</a>
+            <a href="employer_postings.php" class="btn btn-primary btn-lg outer" style="margin-right: 5%; width: 200px">List Postings</a>
+            <a href="../Employers/employer_update_profile.php" class="btn btn-light btn-lg outer2" style="margin-left: 5%; width: 200px">Update Profile</a>
         </div>
 
         <!-- Start of Page Here-->
         <div class="table" style="margin: auto; margin-top: 3%; text-align: center">
-            <div class="row" style="width: 1000px; margin: auto; text-align: center">
-                <div class="cell" style="width: 500px"><h3 class="text-white" style="font-size: 2vw">Company Name</h3></div>
+        <div class="row" style="width: 1000px; margin: auto; text-align: center">
+                <div class="cell" style="width: 500px"><h3 class="text-white" style="font-size: 2vw">Name</h3></div>
                 <div class="cell" style="width: 500px"><h3 class="text-white" style="font-size: 2vw">Username</h3></div>
             </div>
             <div class="row" style="width: 1000px; margin: auto; text-align: center">
                 <div class="cell" style="width: 500px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $name ?></h3></div>
                 <div class="cell" style="width: 500px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $username ?></h3></div>
+            </div>
+
+            <hr>
+            
+            <div class="row" style="width: 900px; margin: auto; text-align: center">
+                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Company Name</h3></div>
+                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Industry</h3></div>
+                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 2vw">Location</h3></div>
+            </div>
+            <div class="row" style="width: 900px;; margin: auto; text-align: center">
+                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $company ?></h3></div>
+                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $industry ?></h3></div>
+                <div class="cell" style="width: 300px"><h3 class="text-white" style="font-size: 1.2vw"><?php echo $location ?></h3></div>
             </div>
 
             <hr>

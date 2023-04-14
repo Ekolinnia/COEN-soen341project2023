@@ -1,0 +1,10 @@
+{
+    "name": "laurenlastoria/coensoen341",
+    "description": "Platform that allows employers to post job listing and student to apply to them",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}

@@ -9,7 +9,7 @@ $mysqli = new mysqli("localhost", "root", DB_PASSWORD, "users");
 
 // Retrieve the user's name from the database
 $username = $_SESSION['username'];
-$query = "SELECT usertype FROM users WHERE username = '$username'";
+$query = "SELECT usertype, company, location, industry FROM users WHERE username = '$username'";
 $result = $mysqli->query($query);
 
 // Check if the user is logged in
@@ -24,6 +24,21 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         header("Location: ../SignUp/sign_up_page.php");
         exit;
     }
+    if(!isset($row['company']) || !isset($row['location']) || !isset($row['industry'])){
+        $missing = "Location: error_post.php?a=a";
+        if(!isset($row['company'])){
+            $missing = $missing . "&comp=1";
+        }
+        if(!isset($row['location'])){
+            $missing = $missing . "&loc=1";
+        }
+        if(!isset($row['industry'])){
+            $missing = $missing . "&ind=1";
+        }
+        header($missing);
+        exit;
+    }
+
 }
 ?>
 
@@ -75,7 +90,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 
                         <div class="form-group">
                             <label for="company">Company</label>
-                            <input type="text" class="form-control" id="company" name="company" aria-describedby="company" placeholder="Company Name">
+                            <div type="text" style="font-size: 1.1vw; padding-left:2%"><?php echo $row['company'];?></div>
+                            <input type="hidden" id="company" name="company" value="<?php echo $row['company'];?>">
                         </div>
 
                         <div class="form-group">
@@ -85,12 +101,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 
                         <div class="form-group">
                             <label for="industry">Industry</label>
-                            <input type="text" class="form-control" id="industry" name="industry" placeholder="Industry">
+                            <div type="text" style="font-size: 1.1vw; padding-left:2%"><?php echo $row['industry'];?></div>
+                            <input type="hidden" id="industry" name="industry" value="<?php echo $row['industry'];?>">
                         </div>
 
                         <div class="form-group">
                             <label for="location">Location</label>
-                            <input type="text" class="form-control" id="location" name="location" placeholder="Location">
+                            <div type="text" style="font-size: 1.1vw; padding-left:2%"><?php echo $row['location'];?></div>
+                            <input type="hidden" id="location" name="location" value="<?php echo $row['company'];?>">
                         </div>
 
                         <div class="form-group">

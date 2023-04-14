@@ -25,6 +25,22 @@
                     About
                 </a>
             </li>
+           
+<?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                if($_SESSION['usertype'] === 'employee') { ?>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="../Search/search_page.php">
+                        Find Opportunities
+                    </a>
+                </li>
+                <?php } else if ($_SESSION['usertype'] === 'employer') { ?>
+                <li class="nav-item">
+                    <a class="nav-link navbar-text" href="../Employers/post.php">
+                        Open a Position
+                    </a>
+                </li>
+                <?php } ?>
+            <?php } else { ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle navbar-text" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Search
@@ -42,11 +58,73 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link navbar-text" href="../Students/dashboard.php">
+            <?php } ?>
+
+            
+<?php if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+                if($_SESSION['usertype'] === 'employee') { ?>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbar-text" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Dashboard
                 </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Students/dashboard.php" style="color: #212529">
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Students/applications_list.php" style="color: #212529">
+                            Applications
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Students/favourites.php" style="color: #212529">
+                            Favourites
+                        </a>
+                    </li>
+                </ul>
             </li>
+                <?php } else if ($_SESSION['usertype'] === 'employer') { ?>
+                    <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbar-text" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dashboard
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Students/dashboard.php" style="color: #212529">
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Employers/employer_postings.php" style="color: #212529">
+                            Postings
+                        </a>
+                    </li>
+                </ul>
+            </li>
+                <?php } ?>
+            <?php } else { ?>
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle navbar-text" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dashboard
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Students/dashboard.php" style="color: #212529">
+                            Profile
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item navbar-text" href="../Students/applications_list.php" style="color: #212529">
+                            Applications
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <?php } ?>
+            
+           
             <li class="nav-item">
                 <a class="nav-link navbar-text" href="../SignUp/BACK_log_out.php">
                     <?php
